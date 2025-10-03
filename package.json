@@ -2,7 +2,7 @@
   "name": "01-nest-rn",
   "version": "0.0.1",
   "description": "",
-  "author": "Jacy",
+  "author": "Jacy and miin",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -22,8 +22,12 @@
   },
   "dependencies": {
     "@nestjs/common": "11.1.6",
+    "@nestjs/config": "4.0.2",
     "@nestjs/core": "11.1.6",
+    "@nestjs/mapped-types": "2.1.0",
+    "@nestjs/mongoose": "11.0.3",
     "@nestjs/platform-express": "11.1.6",
+    "mongoose": "8.19.0",
     "reflect-metadata": "0.2.2",
     "rxjs": "7.8.2"
   },
