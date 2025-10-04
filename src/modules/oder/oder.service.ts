@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CreateOderDto } from './dto/create-oder.dto';
-import { UpdateOderDto } from './dto/update-oder.dto';
+import { CreateOrderDto } from './dto/create-oder.dto';
+import { UpdateOrderDto } from './dto/update-oder.dto';
 
 @Injectable()
 export class OderService {
-  create(createOderDto: CreateOderDto) {
+  create(createOderDto: CreateOrderDto) {
     return 'This action adds a new oder';
   }
 
@@ -16,7 +16,7 @@ export class OderService {
     return `This action returns a #${id} oder`;
   }
 
-  update(id: number, updateOderDto: UpdateOderDto) {
+  update(id: number, updateOderDto: UpdateOrderDto) {
     return `This action updates a #${id} oder`;
   }
 

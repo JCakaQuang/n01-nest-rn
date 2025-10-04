@@ -1,14 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { OderDetailService } from './oder_detail.service';
-import { CreateOderDetailDto } from './dto/create-oder_detail.dto';
-import { UpdateOderDetailDto } from './dto/update-oder_detail.dto';
+import { OrderDetailService } from './oder_detail.service';
+import { CreateOrderDetailDto } from './dto/create-oder_detail.dto';
+import { UpdateOrderDetailDto } from './dto/update-oder_detail.dto';
 
 @Controller('oder-detail')
 export class OderDetailController {
-  constructor(private readonly oderDetailService: OderDetailService) {}
+  constructor(private readonly oderDetailService: OrderDetailService) {}
 
   @Post()
-  create(@Body() createOderDetailDto: CreateOderDetailDto) {
+  create(@Body() createOderDetailDto: CreateOrderDetailDto) {
     return this.oderDetailService.create(createOderDetailDto);
   }
 
@@ -23,7 +23,7 @@ export class OderDetailController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateOderDetailDto: UpdateOderDetailDto) {
+  update(@Param('id') id: string, @Body() updateOderDetailDto: UpdateOrderDetailDto) {
     return this.oderDetailService.update(+id, updateOderDetailDto);
   }
 

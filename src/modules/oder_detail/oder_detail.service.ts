@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CreateOderDetailDto } from './dto/create-oder_detail.dto';
-import { UpdateOderDetailDto } from './dto/update-oder_detail.dto';
+import { CreateOrderDetailDto } from './dto/create-oder_detail.dto';
+import { UpdateOrderDetailDto } from './dto/update-oder_detail.dto';
 
 @Injectable()
-export class OderDetailService {
-  create(createOderDetailDto: CreateOderDetailDto) {
+export class OrderDetailService {
+  create(createOderDetailDto: CreateOrderDetailDto) {
     return 'This action adds a new oderDetail';
   }
 
@@ -16,7 +16,7 @@ export class OderDetailService {
     return `This action returns a #${id} oderDetail`;
   }
 
-  update(id: number, updateOderDetailDto: UpdateOderDetailDto) {
+  update(id: number, updateOderDetailDto: UpdateOrderDetailDto) {
     return `This action updates a #${id} oderDetail`;
   }
 

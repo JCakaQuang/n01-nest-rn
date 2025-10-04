@@ -20,13 +20,13 @@ export class User {
   @Prop()
   address: string;
 
-  @Prop()
+  @Prop({ default: 'LOCAL' })
   account_type: string; // ví dụ: local, google, facebook
 
-  @Prop()
-  role: string; // admin, customer, shipper,...
+  @Prop({ default: 'USERS' })
+  role: string; // admin, user,...
 
-  @Prop({ default: true })
+  @Prop({ default: false })
   is_active: boolean;
 
   @Prop()
