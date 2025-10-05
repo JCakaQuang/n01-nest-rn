@@ -1,4 +1,14 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateChatDto } from './create-chat.dto';
+import { IsMongoId, IsOptional, IsString, IsBoolean } from 'class-validator';
 
-export class UpdateChatDto extends PartialType(CreateChatDto) {}
+export class UpdateChatDto {
+  @IsMongoId()
+  _id: string;
+
+  @IsOptional()
+  @IsString()
+  message?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  is_read?: boolean;
+}

@@ -6,8 +6,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { FoodModule } from './modules/food/food.module';
 import { FoodtypeModule } from './modules/foodtype/foodtype.module';
-import { OderModule } from './modules/oder/oder.module';
-import { OderDetailModule } from './modules/oder_detail/oder_detail.module';
+import { OrderModule } from './modules/order/oder.module';
+import { OrderDetailModule } from './modules/oder_detail/oder_detail.module';
 import { PaymentModule } from './modules/payment/payment.module';
 import { ChatModule } from './modules/chat/chat.module';
 
@@ -16,8 +16,8 @@ import { ChatModule } from './modules/chat/chat.module';
     UsersModule,
     FoodModule,
     FoodtypeModule,
-    OderModule,
-    OderDetailModule,
+    OrderModule,
+    OrderDetailModule,
     PaymentModule,
     ChatModule,
     ConfigModule.forRoot({ isGlobal: true }),

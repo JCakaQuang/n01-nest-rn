@@ -9,4 +9,4 @@ import { OrderDetail, OrderDetailSchema } from './schemas/oder_detail.schema';
   controllers: [OderDetailController],
   providers: [OrderDetailService],
 })
-export class OderDetailModule {}
+export class OrderDetailModule {}

@@ -1,4 +1,14 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateOrderDetailDto } from './create-oder_detail.dto';
+import { IsMongoId, IsNumber, IsOptional } from 'class-validator';
 
-export class UpdateOrderDetailDto extends PartialType(CreateOrderDetailDto) {}
+export class UpdateOrderDetailDto {
+    @IsMongoId()
+    _id: string;
+
+    @IsNumber()
+    @IsOptional()
+    quantity: number;
+
+    @IsNumber()
+    @IsOptional()
+    price: number;
+}

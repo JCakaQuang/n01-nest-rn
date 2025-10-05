@@ -1,34 +1,35 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ChatService } from './chat.service';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { ChatsService } from './chat.service';
 import { CreateChatDto } from './dto/create-chat.dto';
 import { UpdateChatDto } from './dto/update-chat.dto';
 
-@Controller('chat')
-export class ChatController {
-  constructor(private readonly chatService: ChatService) {}
+@Controller('chats')
+export class ChatsController {
+  constructor(private readonly chatsService: ChatsService) {}
 
   @Post()
-  create(@Body() createChatDto: CreateChatDto) {
-    return this.chatService.create(createChatDto);
+  create(@Body() dto: CreateChatDto) {
+    return this.chatsService.create(dto);
   }
 
   @Get()
-  findAll() {
-    return this.chatService.findAll();
+  async findAll(
+    @Query() query: any,
+    @Query('current') current: string,
+    @Query('pageSize') pageSize: string,
+  ) {
+    const currentPage = current ? parseInt(current, 10) : 1;
+    const size = pageSize ? parseInt(pageSize, 10) : 10;
+    return this.chatsService.findAll(query, currentPage, size);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.chatService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateChatDto: UpdateChatDto) {
-    return this.chatService.update(+id, updateChatDto);
+  @Patch()
+  update(@Body() dto: UpdateChatDto) {
+    return this.chatsService.update(dto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.chatService.remove(+id);
+    return this.chatsService.remove(id);
   }
 }

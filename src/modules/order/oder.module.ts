@@ -9,4 +9,4 @@ import { Order, OrderSchema } from './schemas/oder.schema';
   controllers: [OderController],
   providers: [OderService],
 })
-export class OderModule {}
+export class OrderModule {}

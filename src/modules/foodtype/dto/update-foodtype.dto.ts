@@ -1,4 +1,14 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateFoodTypeDto } from './create-foodtype.dto';
+import { IsMongoId, IsOptional, IsString } from "class-validator";
 
-export class UpdateFoodTypeDto extends PartialType(CreateFoodTypeDto) {}
+export class UpdateFoodTypeDto {
+    @IsMongoId()
+    _id: string;
+
+    @IsString()
+    @IsOptional()
+    name: string;
+
+    @IsOptional()
+    @IsString()
+    description?: string;
+}

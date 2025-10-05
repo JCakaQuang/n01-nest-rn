@@ -5,7 +5,7 @@ export class CreateFoodDto {
   @IsNotEmpty()
   name: string;
 
-  @IsNumber()
+  @IsOptional()
   price: number;
 
   @IsOptional()
@@ -16,9 +16,9 @@ export class CreateFoodDto {
   @IsString()
   image?: string;
 
-  @IsNumber()
+  @IsOptional()
   quantity: number;
 
-  @IsMongoId()
+  @IsOptional()
   foodtype_id: string;
 }

@@ -1,15 +1,15 @@
-import { Injectable, Param } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Food } from './schemas/food.schema';
-import { CreateFoodDto } from './dto/create-food.dto';
-import { UpdateFoodDto } from './dto/update-food.dto';
+import { Order } from './schemas/oder.schema';
+import { CreateOrderDto } from './dto/create-oder.dto';
+import { UpdateOrderDto } from './dto/update-oder.dto';
 
 @Injectable()
-export class FoodsService {
-  constructor(@InjectModel(Food.name) private foodModel: Model<Food>) {}
+export class OderService {
+  constructor(@InjectModel(Order.name) private foodModel: Model<Order>) { }
 
-  async create(dto: CreateFoodDto) {
+  async create(dto: CreateOrderDto) {
     return await this.foodModel.create(dto);
   }
 
@@ -25,7 +25,7 @@ export class FoodsService {
     return { data, meta: { current, pageSize, total, totalPages: Math.ceil(total / pageSize) } };
   }
 
-  async update(dto: UpdateFoodDto) {
+  async update(dto: UpdateOrderDto) {
     return await this.foodModel.updateOne({ _id: dto._id }, { $set: dto });
   }
 

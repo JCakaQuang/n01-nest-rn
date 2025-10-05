@@ -1,34 +1,35 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { FoodService } from './food.service';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { FoodsService } from './food.service';
 import { CreateFoodDto } from './dto/create-food.dto';
 import { UpdateFoodDto } from './dto/update-food.dto';
 
-@Controller('food')
-export class FoodController {
-  constructor(private readonly foodService: FoodService) {}
+@Controller('foods')
+export class FoodsController {
+  constructor(private readonly foodsService: FoodsService) {}
 
   @Post()
-  create(@Body() createFoodDto: CreateFoodDto) {
-    return this.foodService.create(createFoodDto);
+  create(@Body() dto: CreateFoodDto) {
+    return this.foodsService.create(dto);
   }
 
   @Get()
-  findAll() {
-    return this.foodService.findAll();
+  async findAll(
+    @Query() query: any,
+    @Query('current') current: string,
+    @Query('pageSize') pageSize: string,
+  ) {
+    const currentPage = current ? parseInt(current, 10) : 1;
+    const size = pageSize ? parseInt(pageSize, 10) : 10;
+    return this.foodsService.findAll(query, currentPage, size);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.foodService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFoodDto: UpdateFoodDto) {
-    return this.foodService.update(+id, updateFoodDto);
+  @Patch()
+  update(@Body() dto: UpdateFoodDto) {
+    return this.foodsService.update(dto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.foodService.remove(+id);
+    return this.foodsService.remove(id);
   }
 }
