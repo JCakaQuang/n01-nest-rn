@@ -6,8 +6,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { FoodModule } from './modules/food/food.module';
 import { FoodtypeModule } from './modules/foodtype/foodtype.module';
-import { OrderModule } from './modules/order/oder.module';
-import { OrderDetailModule } from './modules/oder_detail/oder_detail.module';
+import { OrderModule } from './modules/order/order.module';
+import { OrderDetailModule } from './modules/order_detail/order_detail.module';
 import { PaymentModule } from './modules/payment/payment.module';
 import { ChatModule } from './modules/chat/chat.module';
 

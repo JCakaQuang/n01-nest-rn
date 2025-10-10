@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
-import { OderService } from './oder.service';
-import { CreateOrderDto } from './dto/create-oder.dto';
-import { UpdateOrderDto } from './dto/update-oder.dto';
+import { OderService } from './order.service';
+import { CreateOrderDto } from './dto/create-order.dto';
+import { UpdateOrderDto } from './dto/update-order.dto';
 
 @Controller('order')
 export class OderController {
@@ -10,6 +10,16 @@ export class OderController {
   @Post()
   create(@Body() createOderDto: CreateOrderDto) {
     return this.oderService.create(createOderDto);
+  }
+
+  @Patch(':id/confirm-payment')
+  confirmPayment(@Param('id') id: string) {
+    return this.oderService.confirmPaymentAndUpdateStock(id);
+  }
+  
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.oderService.findOne(id);
   }
 
   @Get()
