@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { OderService } from './order.service';
+import { OrderService } from './order.service';
 import { OderController } from './order.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Order, OrderSchema } from './schemas/order.schema';
@@ -19,6 +19,6 @@ import { Payment, PaymentSchema } from '../payment/schemas/payment.schema';
     ]),
   ],
   controllers: [OderController],
-  providers: [OderService],
+  providers: [OrderService],
 })
 export class OrderModule {}
