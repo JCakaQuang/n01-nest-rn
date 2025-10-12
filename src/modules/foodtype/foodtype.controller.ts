@@ -5,11 +5,11 @@ import { UpdateFoodTypeDto } from './dto/update-foodtype.dto';
 
 @Controller('foodtype')
 export class FoodtypeController {
-  constructor(private readonly foodsService: FoodtypeService) {}
+  constructor(private readonly foodTypeService: FoodtypeService) {}
   
     @Post()
     create(@Body() dto: CreateFoodTypeDto) {
-      return this.foodsService.create(dto);
+      return this.foodTypeService.create(dto);
     }
   
     @Get()
@@ -20,16 +20,21 @@ export class FoodtypeController {
     ) {
       const currentPage = current ? parseInt(current, 10) : 1;
       const size = pageSize ? parseInt(pageSize, 10) : 10;
-      return this.foodsService.findAll(query, currentPage, size);
+      return this.foodTypeService.findAll(query, currentPage, size);
     }
+
+    @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.foodTypeService.findOne(id);
+  }
   
     @Patch()
     update(@Body() dto: UpdateFoodTypeDto) {
-      return this.foodsService.update(dto);
+      return this.foodTypeService.update(dto);
     }
   
     @Delete(':id')
     remove(@Param('id') id: string) {
-      return this.foodsService.remove(id);
+      return this.foodTypeService.remove(id);
     }
 }

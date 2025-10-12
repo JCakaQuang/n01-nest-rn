@@ -29,6 +29,10 @@ export class FoodsService {
     return await this.foodModel.updateOne({ _id: dto._id }, { $set: dto });
   }
 
+  async findOne(id: string) {
+    return await this.foodModel.findById(id).exec();
+  }
+
   async remove(id: string) {
     return await this.foodModel.deleteOne({ _id: id });
   }

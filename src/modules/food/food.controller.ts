@@ -5,7 +5,7 @@ import { UpdateFoodDto } from './dto/update-food.dto';
 
 @Controller('foods')
 export class FoodsController {
-  constructor(private readonly foodsService: FoodsService) {}
+  constructor(private readonly foodsService: FoodsService) { }
 
   @Post()
   create(@Body() dto: CreateFoodDto) {
@@ -21,6 +21,11 @@ export class FoodsController {
     const currentPage = current ? parseInt(current, 10) : 1;
     const size = pageSize ? parseInt(pageSize, 10) : 10;
     return this.foodsService.findAll(query, currentPage, size);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.foodsService.findOne(id);
   }
 
   @Patch()
