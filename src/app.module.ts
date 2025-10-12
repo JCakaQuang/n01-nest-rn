@@ -10,6 +10,7 @@ import { OrderModule } from './modules/order/oder.module';
 import { OrderDetailModule } from './modules/oder_detail/oder_detail.module';
 import { PaymentModule } from './modules/payment/payment.module';
 import { ChatModule } from './modules/chat/chat.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ChatModule } from './modules/chat/chat.module';
       }),
       inject: [ConfigService],
     }),
+    AuthModule,
 
   ],
   controllers: [AppController],
