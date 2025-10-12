@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateOrderDetailDto } from './dto/create-oder_detail.dto';
-import { UpdateOrderDetailDto } from './dto/update-oder_detail.dto';
+import { CreateOrderDetailDto } from './dto/create-order_detail.dto';
+import { UpdateOrderDetailDto } from './dto/update-order_detail.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { OrderDetail } from './schemas/oder_detail.schema';
@@ -19,7 +19,9 @@ export class OrderDetailService {
       const { filter, sort } = aqp(queryWithoutPagination);
       const skip = (current - 1) * pageSize;
   
-      const data = await this.orderDetailModel.find(filter).skip(skip).limit(pageSize).sort(sort as any);
+      const data = await this.orderDetailModel.find(filter).skip(skip).limit(pageSize).sort(sort as any).populate({
+        path: 'food_id',
+      });
       const total = await this.orderDetailModel.countDocuments(filter);
   
       return { data, meta: { current, pageSize, total, totalPages: Math.ceil(total / pageSize) } };

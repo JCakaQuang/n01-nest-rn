@@ -28,6 +28,11 @@ export class PaymentController {
     return this.paymentService.update(updatePaymentDto);
   }
 
+  @Get('user/:userId')
+  findAllByUser(@Param('userId') userId: string) {
+    return this.paymentService.findAllByUser(userId);
+  }
+
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.paymentService.remove(id);
