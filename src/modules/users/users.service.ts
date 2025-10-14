@@ -73,8 +73,8 @@ export class UsersService {
     return await this.userModel.findOne({email})
   }
 
-  async update(updateUserDto: UpdateUserDto) {
-    return await this.userModel.updateOne({ _id: updateUserDto._id }, { $set: { ...updateUserDto } });
+  async update(id: String, updateUserDto: UpdateUserDto) {
+    return await this.userModel.updateOne({ _id: id }, { $set: updateUserDto });
   }
 
   async remove(_id: string) {

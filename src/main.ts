@@ -10,12 +10,16 @@ async function bootstrap() {
   const port = configService.get('PORT');
   app.setGlobalPrefix('api/v1', { exclude: [''] });
 
-  app.useGlobalPipes(new ValidationPipe(
-    {
-      whitelist: true, 
-      forbidNonWhitelisted : true,
-    }
-  ));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true, // Tự động loại bỏ các thuộc tính không được định nghĩa trong DTO
+      forbidNonWhitelisted: true, // Ném lỗi nếu có thuộc tính không được định nghĩa trong DTO
+      transform: true, // Tự động chuyển đổi kiểu dữ liệu (vd: string sang number)
+      transformOptions: {
+        enableImplicitConversion: true, // Hỗ trợ chuyển đổi kiểu ngầm định
+      },
+    }),
+  );
 
   app.enableCors();
 

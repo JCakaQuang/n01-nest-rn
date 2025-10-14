@@ -1,15 +1,15 @@
 import { IsMongoId, IsOptional, IsString, IsNumber } from 'class-validator';
 
 export class UpdateFoodDto {
-  @IsMongoId()
-  _id: string;
+  @IsOptional()
+  @IsMongoId({ message: 'FoodType ID không hợp lệ.' })
+  foodtype_id?: string;
 
   @IsOptional()
   @IsString()
   name?: string;
 
   @IsOptional()
-  @IsNumber()
   price?: number;
 
   @IsOptional()

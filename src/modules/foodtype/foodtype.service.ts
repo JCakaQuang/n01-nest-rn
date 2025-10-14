@@ -29,8 +29,8 @@ export class FoodtypeService {
     return await this.FoodTypeModel.findById(id).exec();
   }
 
-  async update(dto: UpdateFoodTypeDto) {
-    return await this.FoodTypeModel.updateOne({ _id: dto._id }, { $set: dto });
+  async update(id: string, dto: UpdateFoodTypeDto) {
+    return await this.FoodTypeModel.updateOne({ _id: id }, { $set: dto });
   }
 
   async remove(id: string) {

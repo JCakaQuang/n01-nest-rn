@@ -28,9 +28,9 @@ export class FoodsController {
     return this.foodsService.findOne(id);
   }
 
-  @Patch()
-  update(@Body() dto: UpdateFoodDto) {
-    return this.foodsService.update(dto);
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() dto: UpdateFoodDto) {
+    return this.foodsService.update(id, dto);
   }
 
   @Delete(':id')

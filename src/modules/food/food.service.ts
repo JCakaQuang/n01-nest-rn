@@ -25,8 +25,8 @@ export class FoodsService {
     return { data, meta: { current, pageSize, total, totalPages: Math.ceil(total / pageSize) } };
   }
 
-  async update(dto: UpdateFoodDto) {
-    return await this.foodModel.updateOne({ _id: dto._id }, { $set: dto });
+  async update(id: string, dto: UpdateFoodDto) {
+    return await this.foodModel.updateOne({ _id: id }, { $set: dto });
   }
 
   async findOne(id: string) {
