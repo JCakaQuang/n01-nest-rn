@@ -1,7 +1,6 @@
-import { IsBoolean, IsEmail, IsIn, IsMongoId, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsEmail, IsIn, IsMongoId, IsOptional, IsString } from 'class-validator';
 
 export class UpdateUserDto {
-
     @IsMongoId({ message: 'Invalid user ID' })
     @IsOptional()
     _id: string;
@@ -23,10 +22,6 @@ export class UpdateUserDto {
     address?: string;
 
     @IsOptional()
-    @IsString()
-    password?: string;
-
-    @IsOptional()
-    @IsIn(['admin', 'user'])
+    @IsIn(['admin', 'user']) // Sửa thành ['admin', 'user'] để chỉ cho phép 2 giá trị này
     role?: string;
-} 
+}

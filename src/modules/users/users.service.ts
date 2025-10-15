@@ -6,6 +6,8 @@ import { User } from './schemas/user.schema';
 import { Model } from 'mongoose';
 import { hashPasswordHelper } from 'src/helpers/util';
 import mongoose from 'mongoose';
+import { compare } from 'bcrypt';
+import { ChangePasswordDto } from './dto/change-password.dto';
 
 @Injectable()
 export class UsersService {
@@ -35,6 +37,7 @@ export class UsersService {
       _id: user._id,
     }
   }
+
   async findAll(query: any, current: number = 1, pageSize: number = 10) {
     // Tạo bản sao query và xóa current, pageSize trước khi parse
     const { current: _, pageSize: __, ...queryWithoutPagination } = query;
@@ -70,11 +73,40 @@ export class UsersService {
   }
 
   async findByEmail (email: string) {
-    return await this.userModel.findOne({email})
+    return await this.userModel.findOne({email}).select('+password');
   }
 
   async update(id: String, updateUserDto: UpdateUserDto) {
     return await this.userModel.updateOne({ _id: id }, { $set: updateUserDto });
+  }
+
+  async comparePassword(password: string, hash: string): Promise<boolean> {
+    return await compare(password, hash);
+  }
+
+  async changePassword(userId: string, changePasswordDto: ChangePasswordDto) {
+    const user = await this.userModel.findById(userId).select('+password');
+    if (!user) {
+      throw new BadRequestException('Không tìm thấy người dùng.');
+    }
+
+    const isPasswordMatch = await compare(
+      changePasswordDto.currentPassword,
+      user.password,
+    );
+
+    if (!isPasswordMatch) {
+      throw new BadRequestException('Mật khẩu hiện tại không chính xác.');
+    }
+
+    const newHashedPassword = await hashPasswordHelper(changePasswordDto.newPassword);
+
+    await this.userModel.updateOne(
+      { _id: userId },
+      { password: newHashedPassword },
+    );
+
+    return { message: 'Đổi mật khẩu thành công.' };
   }
 
   async remove(_id: string) {
